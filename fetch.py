@@ -73,13 +73,13 @@ if __name__ == '__main__':
             groups.setdefault(group, []).append(row)
         except ValueError:
             pass
-    if True:
-        for key, value in groups.items():
-            filename = GROUP_MAPPING.get(key, "VBCS").replace('/', '_') + ".csv"
-            print('writing {0}'.format(filename))
-            fd = codecs.open(filename, 'w', encoding='utf-8')
-            writer = csv.writer(fd, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            writer.writerow(HEADER)
-            for row in value:
-                writer.writerow(row)
-            fd.close()
+
+    for key, value in groups.items():
+        filename = GROUP_MAPPING.get(key, "VBCS").replace('/', '_') + ".csv"
+        print('writing {0}'.format(filename))
+        fd = codecs.open(filename, 'w', encoding='utf-8')
+        writer = csv.writer(fd, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(HEADER)
+        for row in value:
+            writer.writerow(row)
+        fd.close()
